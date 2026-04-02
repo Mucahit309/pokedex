@@ -1,5 +1,6 @@
 :root {
     --bg-dark: #050a0e;
+    --card-dark: #121b23;
     --accent: #ff4757;
 }
 
@@ -57,7 +58,69 @@ body {
 }
 
 .pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+    padding: 40px 5% 120px 5%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
 
+.pokemon-card {
+    background-color: var(--card-dark);
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #2c3e50;
+}
+
+.pokemon-card:hover {
+    transform: translateY(-8px);
+}
+
+.card-top {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.card-top span {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-weight: bold;
+    opacity: 0.3;
+}
+
+.card-top img {
+    height: 100px;
+    object-fit: contain;
+}
+
+.pokemon-card h3 {
+    margin: 15px 0 5px 0;
+    text-transform: capitalize;
+}
+
+.types-container {
+    padding-bottom: 20px;
+}
+
+.type-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin: 0 4px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.2);
 }
 
 .load-button {
