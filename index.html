@@ -28,7 +28,9 @@
       <button id="load-more-btn" onclick="loadMore()">Load More Pokémon</button>
     </div>
 
-    <dialog id="overlay" class="overlay d-none"></dialog>
+    <dialog id="overlay" class="overlay d-none" onclick="closeDialog()">
+        <div id="overlay-content" onclick="preventClickThrough(event)"></div>
+    </dialog>
 
     <div id="loading-screen" class="loading-screen d-none">
         <img src="./img/pokeball.png" class="loading-icon" alt="Loading...">
