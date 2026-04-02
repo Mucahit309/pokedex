@@ -1,43 +1,41 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pokedex</title>
+    <title>Pokédex</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/x-icon" href="./img/pokeball.png" />
   </head>
   <body onload="init()">
+
     <header>
       <div class="header-content">
         <div class="logo">
-          <img src="./img/pokeball.png" alt="Logo" />
-          <h1>Pokedex</h1>
+          <img src="./img/pokeball.png" alt="Logo"/>
+          <h1>Pokédex</h1>
         </div>
         <div class="search-bar">
-          <input type="text" id="search" />
+          <input type="text" id="search" placeholder="Search Pokémon..."/>
           <button onclick="searchPokemon()">Search</button>
         </div>
       </div>
     </header>
 
-    <main class="pokemon-grid"></main>
+    <main id="pokemon-container" class="pokemon-grid"></main>
 
     <div class="load-button">
-      <button id="load-more-btn" onclick="loadMore()"></button>
+      <button id="load-more-btn" onclick="loadMore()">Load More Pokémon</button>
     </div>
 
     <dialog id="overlay" class="overlay d-none"></dialog>
 
-    <div class="loading-screen d-none">
+    <div id="loading-screen" class="loading-screen d-none">
+        <img src="./img/pokeball.png" class="loading-icon" alt="Loading...">
       <p>Catching Pokémon...</p>
     </div>
 
-    <script>
-      src = "template.js";
-    </script>
-    <script>
-      src = "script.js";
-    </script>
+    <script src="template.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
