@@ -1,0 +1,49 @@
+:root {
+    --bg-dark: #050a0e;
+    --accent: #ff4757;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: white;
+    min-height: 100vh;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.d-none {
+    display: none;
+}
+
+.logo {
+
+}
+
+.search-bar {
+
+}
+
+.pokemon-grid {
+
+}
+
+.load-button {
+
+}
+
+.overlay {
+
+}
+
+.loading-screen {
+
+}
