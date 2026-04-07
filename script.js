@@ -20,7 +20,14 @@ async function loadMore() {
     let response = await fetch(apiUrl);
     let rawData = await response.json();
     await fetchAndRenderDetails(rawData.results);
-  } catch (e) {}
+    currentOffset += fetchLimit;
+    
+    if (currentOffset >= totalGenOne) {
+      document.getElementById("load-more-btn").classList.add("d-none");
+    }
+  } catch (e) {
+    console.error("Error fetching Pokémon data:", e);
+  }
 }
 
 async function fetchAndRenderDetails(results) {
