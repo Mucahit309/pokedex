@@ -181,15 +181,27 @@ body {
 }
 
 .nav-arrow {
-
+    position: absolute;
+    top: 50%;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .arrow-left {
-
+    left: 15px;
 }
 
 .arrow-right {
-
+    right: 15px;
 }
 
 .dialog-tabs {

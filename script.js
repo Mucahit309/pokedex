@@ -138,11 +138,19 @@ function closeDialog() {
 }
 
 function goNext() {
-
+    activePokemonIndex++;
+    if (activePokemonIndex >= fetchedPokemon.length) {
+    activePokemonIndex = 0;
+    }
+    openPokemonDialog(activePokemonIndex);
 }
 
 function goPrevious() {
-
+    activePokemonIndex--;
+    if (activePokemonIndex < 0) {
+        activePokemonIndex = fetchedPokemon.length - 1;
+    }
+    openPokemonDialog(activePokemonIndex);
 }
 
 function closeDialog(event) {
@@ -155,13 +163,11 @@ function closeDialog(event) {
 }
 
 function searchPokemon() {
-    
+
 }
 
 //TODO:
 //Loadingscreen with timer
-
-//Dialog Next and Previous Button
 
 //Search function
 //Search by name or ID
