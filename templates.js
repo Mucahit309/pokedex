@@ -12,7 +12,7 @@ function createPokemonCard(id, name, img, mainType, typesHtml, index) {
 }
 
 function createBadge(typeName) {
-  return `<span class="type-badge bg-${typeName}">${typeName}</span>`;
+  return `<span style="filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));" class="type-badge bg-${typeName}">${typeName}</span>`;
 }
 
 function createOverlay(id, name, img, mainType, typesHtml, contentArea) {
