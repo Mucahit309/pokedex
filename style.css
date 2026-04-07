@@ -147,7 +147,108 @@ body {
 }
 
 .overlay {
+    border: none;
+    background: transparent;
+    padding: 0;
+    outline: none;
+}
 
+.overlay::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.dialog-card {
+    background: #1a252f;
+    width: 500px;
+    height: 750px;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.dialog-header {
+    height: 350px;
+    flex-shrink: 0;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.nav-arrow {
+
+}
+
+.arrow-left {
+
+}
+
+.arrow-right {
+
+}
+
+.dialog-tabs {
+    display: flex;
+    background: #141d26;
+    flex-shrink: 0;
+}
+
+.dialog-tabs button {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #888;
+    padding: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 4px solid transparent;
+}
+
+.dialog-tabs button.active {
+    color: white;
+    border-bottom: 4px solid var(--accent);
+}
+
+.dialog-content {
+    flex-grow: 1;
+    padding: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.stat-name {
+    width: 100px;
+    font-size: 13px;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.stat-bar-bg {
+    flex: 1;
+    height: 10px;
+    background: #0b131a;
+    border-radius: 5px;
+}
+
+.stat-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 5px;
 }
 
 .loading-screen {
@@ -169,3 +270,5 @@ body {
 .bg-ghost { background-color: #705898; }
 .bg-ice { background-color: #98d8d8; }
 .bg-dragon { background-color: #7038f8; }
+
+.no-scroll { overflow: hidden; }

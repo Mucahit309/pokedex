@@ -2,81 +2,165 @@ let fetchedPokemon = [];
 let currentOffset = 0;
 let loadAmount = 20;
 let totalGenOne = 151;
-//
+let activePokemonIndex = 0;
+
 async function init() {
-    await loadMore();
+  await loadMore();
 }
 
 async function loadMore() {
-    if (currentOffset >= totalGenOne) return;
-    
-    let fetchLimit = loadAmount;
-    if (currentOffset + loadAmount > totalGenOne) {
-        fetchLimit = totalGenOne - currentOffset;
-    }
+  if (currentOffset >= totalGenOne) return;
+  let fetchLimit = loadAmount;
+  if (currentOffset + loadAmount > totalGenOne) {
+    fetchLimit = totalGenOne - currentOffset;
+  }
+  let apiUrl = `https://pokeapi.co/api/v2/pokemon?offset=${currentOffset}&limit=${fetchLimit}`;
 
-    let apiUrl = `https://pokeapi.co/api/v2/pokemon?offset=${currentOffset}&limit=${fetchLimit}`;
-    
-    try {
-        let response = await fetch(apiUrl);
-        let rawData = await response.json();
-        
-        for (let i = 0; i < rawData.results.length; i++) {
-            let singleRes = await fetch(rawData.results[i].url);
-            let Pdata = await singleRes.json();
-            fetchedPokemon.push(Pdata);
-            
-            let index = fetchedPokemon.length - 1;
-            drawPokemonCard(Pdata, index);
-        }
-        
-        currentOffset += fetchLimit;
-        
-        if (currentOffset >= totalGenOne) {
-            let loadBtn = document.getElementById('load-more-btn');
-            loadBtn.classList.add('d-none');
-        }
-    } catch (e) {
-        console.error('Error fetching Pokémon data:', e);
-    }
+  try {
+    let response = await fetch(apiUrl);
+    let rawData = await response.json();
+    await fetchAndRenderDetails(rawData.results);
+  } catch (e) {}
+}
+
+async function fetchAndRenderDetails(results) {
+  for (let i = 0; i < results.length; i++) {
+    let singleRes = await fetch(results[i].url);
+    let pData = await singleRes.json();
+    fetchedPokemon.push(pData);
+    drawPokemonCard(pData, fetchedPokemon.length - 1);
+  }
 }
 
 function drawPokemonCard(data, index) {
-    let container = document.getElementById('pokemon-container');
-    let allTypes = '';
-    
-    for (let i = 0; i < data.types.length; i++) {
-        allTypes += createBadge(data.types[i].type.name);
+  let container = document.getElementById("pokemon-container");
+  let allTypes = "";
+  for (let i = 0; i < data.types.length; i++) {
+    allTypes += createBadge(data.types[i].type.name);
+  }
+  let imgUrl = data.sprites.other["official-artwork"].front_default;
+  let typeMain = data.types[0].type.name;
+  container.innerHTML += createPokemonCard(
+    data.id, data.name, imgUrl, typeMain, allTypes, index,
+  );
+}
+
+function openPokemonDialog(index) {
+  activePokemonIndex = index;
+  let pokeData = fetchedPokemon[index];
+  let typesString = "";
+  for (let i = 0; i < pokeData.types.length; i++) {
+    typesString += createBadge(pokeData.types[i].type.name);
+  }
+  let mainHtml = generateTabHtml("main", pokeData);
+  let overlayBox = document.getElementById("overlay-content");
+  let imgUrl = pokeData.sprites.other["official-artwork"].front_default;
+  overlayBox.innerHTML = createOverlay( 
+    pokeData.id, pokeData.name, imgUrl, pokeData.types[0].type.name, typesString, mainHtml,
+  );
+  document.getElementById("overlay").showModal();
+  document.body.classList.add("no-scroll");
+}
+
+function switchDialogTab(tabName) {
+  let currentPoke = fetchedPokemon[activePokemonIndex];
+  let contentDiv = document.getElementById("dialog-content");
+  contentDiv.innerHTML = generateTabHtml(tabName, currentPoke);
+  if (tabName === "main") {
+    document.getElementById("btn-main").classList.add("active");
+    document.getElementById("btn-stats").classList.remove("active");
+  } else {
+    document.getElementById("btn-main").classList.remove("active");
+    document.getElementById("btn-stats").classList.add("active");
+  }
+}
+
+function generateTabHtml(tab, data) {
+  if (tab === "main") {
+    return generateMainTabHtml(data);
+  } else {
+    return generateStatsTabHtml(data);
+  }
+}
+
+function generateMainTabHtml(data) {
+  let abils = "";
+  for (let i = 0; i < data.abilities.length; i++) {
+    abils += data.abilities[i].ability.name;
+    if (i < data.abilities.length - 1) {
+      abils += ", ";
     }
-    
-    let imageUrl = data.sprites.other['official-artwork'].front_default;
-    let typeMain = data.types[0].type.name;
-    
-    container.innerHTML += createPokemonCard(data.id, data.name, imageUrl, typeMain, allTypes, index);
+  }
+  return createMainInfo(
+    data.height / 10,
+    data.weight / 10,
+    data.base_experience,
+    abils,
+  );
+}
+
+function generateStatsTabHtml(data) {
+  let htmlResult = '<div style="width: 100%">';
+  for (let i = 0; i < data.stats.length; i++) {
+    let statObj = data.stats[i];
+    let nameFixed = getCustomStatName(statObj.stat.name);
+
+    let percentage = (statObj.base_stat / 150) * 100;
+    if (percentage > 100) {
+      percentage = 100;
+    }
+
+    htmlResult += createStatBar(nameFixed, statObj.base_stat, percentage);
+  }
+  htmlResult += "</div>";
+  return htmlResult;
+}
+
+function getCustomStatName(originalName) {
+  let customNames = {
+    hp: "HP",
+    attack: "ATK",
+    defense: "DEF",
+    "special-attack": "S-ATK",
+    "special-defense": "S-DEF",
+    speed: "SPD",
+  };
+
+  if (customNames[originalName]) {
+    return customNames[originalName];
+  }
+  return originalName;
+}
+
+function closeDialog() {
+  document.getElementById("overlay").close();
+  document.body.classList.remove("no-scroll");
+}
+
+function goNext() {
+
+}
+
+function goPrevious() {
+
+}
+
+function closeDialog(event) {
+  let dialog = document.getElementById("overlay");
+
+  if (event.target === dialog) {
+    dialog.close();
+    document.body.classList.remove("no-scroll");
+  }
 }
 
 function searchPokemon() {
     
 }
 
-function openPokemonDialog(index) {
-
-}
-
-function closeDialog() {
-
-}
-
-function preventClickThrough(event) {
-
-}
-
 //TODO:
 //Loadingscreen with timer
 
-//Dialog function
-//Dialog Tabs
-//Dialog Content (Info, Stats)
 //Dialog Next and Previous Button
 
 //Search function

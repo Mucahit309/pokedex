@@ -8,15 +8,14 @@
     <link rel="icon" type="image/x-icon" href="./img/pokeball.png" />
   </head>
   <body onload="init()">
-
     <header>
       <div class="header-content">
         <div class="logo">
-          <img src="./img/pokeball.png" alt="Logo"/>
+          <img src="./img/pokeball.png" alt="Logo" />
           <h1>Pokédex</h1>
         </div>
         <div class="search-bar">
-          <input type="text" id="search" placeholder="Search Pokémon..."/>
+          <input type="text" id="search" placeholder="Search Pokémon..." />
           <button onclick="searchPokemon()">Search</button>
         </div>
       </div>
@@ -28,12 +27,12 @@
       <button id="load-more-btn" onclick="loadMore()">Load More Pokémon</button>
     </div>
 
-    <dialog id="overlay" class="overlay d-none" onclick="closeDialog()">
-        <div id="overlay-content" onclick="preventClickThrough(event)"></div>
+    <dialog id="overlay" class="overlay" onclick="closeDialog(event)">
+      <div id="overlay-content" onclick="preventClickThrough(event)"></div>
     </dialog>
 
     <div id="loading-screen" class="loading-screen d-none">
-        <img src="./img/pokeball.png" class="loading-icon" alt="Loading...">
+      <img src="./img/pokeball.png" class="loading-icon" alt="Loading..." />
       <p>Catching Pokémon...</p>
     </div>
 
