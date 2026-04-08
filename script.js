@@ -10,23 +10,33 @@ async function init() {
 
 async function loadMore() {
   if (currentOffset >= totalGenOne) return;
+  setLoadingState(true);
+  
   let fetchLimit = loadAmount;
   if (currentOffset + loadAmount > totalGenOne) {
     fetchLimit = totalGenOne - currentOffset;
   }
-  let apiUrl = `https://pokeapi.co/api/v2/pokemon?offset=${currentOffset}&limit=${fetchLimit}`;
+  
+  await fetchPokemonBatch(fetchLimit);
+  updateOffsetAndButton(fetchLimit);
+  setTimeout(() => setLoadingState(false), 1500);
+}
 
+async function fetchPokemonBatch(limit) {
   try {
+    let apiUrl = `https://pokeapi.co/api/v2/pokemon?offset=${currentOffset}&limit=${limit}`;
     let response = await fetch(apiUrl);
     let rawData = await response.json();
     await fetchAndRenderDetails(rawData.results);
-    currentOffset += fetchLimit;
-    
-    if (currentOffset >= totalGenOne) {
-      document.getElementById("load-more-btn").classList.add("d-none");
-    }
-  } catch (e) {
-    console.error("Error fetching Pokémon data:", e);
+  } catch (e) {}
+}
+
+function updateOffsetAndButton(limit) {
+  currentOffset += limit;
+  
+  if (currentOffset >= totalGenOne) {
+    let loadBtn = document.querySelector(".load-button");
+    if (loadBtn) loadBtn.classList.add("d-none");
   }
 }
 
@@ -50,6 +60,19 @@ function drawPokemonCard(data, index) {
   container.innerHTML += createPokemonCard(
     data.id, data.name, imgUrl, typeMain, allTypes, index,
   );
+}
+
+function setLoadingState(isLoading) {
+    let loader = document.getElementById('loading-screen');
+    let btn = document.getElementById('load-more-btn');
+    
+    if (isLoading) {
+        loader.classList.remove('d-none');
+        btn.classList.add('d-none');
+    } else {
+        loader.classList.add('d-none');
+        btn.classList.remove('d-none');
+    }
 }
 
 function openPokemonDialog(index) {
@@ -174,8 +197,8 @@ function searchPokemon() {
 }
 
 //TODO:
-//Loadingscreen with timer
-
 //Search function
 //Search by name or ID
 //Search results update the displayed Pokémon cards
+
+//Mobile Responsiveness
