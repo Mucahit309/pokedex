@@ -192,13 +192,55 @@ function closeDialog(event) {
   }
 }
 
-function searchPokemon() {
+function startSearch() {
+    let inputVal = document.getElementById('search').value.toLowerCase();
+    document.getElementById('pokemon-container').innerHTML = '';
+    
+    if (inputVal.length === 0) {
+        renderAllPokemon();
+        return;
+    }
+    if (inputVal.length < 3) {
+        showMinCharMessage();
+        return;
+    }
+    filterAndRenderPokemon(inputVal);
+}
 
+function renderAllPokemon() {
+    for (let i = 0; i < fetchedPokemon.length; i++) {
+        drawPokemonCard(fetchedPokemon[i], i);
+    }
+}
+
+function filterAndRenderPokemon(inputVal) {
+    let foundItems = [];
+    for (let i = 0; i < fetchedPokemon.length; i++) {
+        if (fetchedPokemon[i].name.includes(inputVal)) {
+            foundItems.push(fetchedPokemon[i]);
+        }
+    }
+    showSearchResults(foundItems);
+}
+
+function showSearchResults(foundItems) {
+    let container = document.getElementById('pokemon-container');
+    if (foundItems.length === 0) {
+        container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;"><h2>Kein Pokémon gefunden</h2></div>`;
+    } else {
+        for (let i = 0; i < foundItems.length; i++) {
+            let originalId = fetchedPokemon.indexOf(foundItems[i]);
+            drawPokemonCard(foundItems[i], originalId);
+        }
+    }
+}
+
+function checkSearchInput() {
+    let val = document.getElementById('search').value;
+    if (val.length === 0) {
+        startSearch();
+    }
 }
 
 //TODO:
-//Search function
-//Search by name or ID
-//Search results update the displayed Pokémon cards
-
 //Mobile Responsiveness
