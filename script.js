@@ -226,7 +226,7 @@ function filterAndRenderPokemon(inputVal) {
 function showSearchResults(foundItems) {
     let container = document.getElementById('pokemon-container');
     if (foundItems.length === 0) {
-        container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;"><h2>Kein Pokémon gefunden</h2></div>`;
+        container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;"><h2>No Pokémon found</h2></div>`;
     } else {
         for (let i = 0; i < foundItems.length; i++) {
             let originalId = fetchedPokemon.indexOf(foundItems[i]);
@@ -242,5 +242,19 @@ function checkSearchInput() {
     }
 }
 
+function handleSearchKey(event) {
+    if (event.key === 'Enter') {
+        startSearch();
+    }
+}
+
+function checkSearchInput() {
+    let inputVal = document.getElementById('search').value;
+    if (inputVal.length === 0) {
+        startSearch();
+    }
+}
+
 //TODO:
+
 //Mobile Responsiveness

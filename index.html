@@ -15,7 +15,7 @@
           <h1>Pokédex</h1>
         </div>
         <div class="search-bar">
-          <input type="text" id="search" placeholder="Search Pokémon..." oninput="checkSearchInput()" />
+          <input type="text" id="search" placeholder="Search Pokémon..." onkeydown="handleSearchKey(event)" onkeyup="checkSearchInput()" />
           <button onclick="startSearch()">Search</button>
         </div>
       </div>
