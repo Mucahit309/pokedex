@@ -23,6 +23,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 9999;
 }
 
 .loading-icon {
@@ -65,7 +66,6 @@ body {
     color: white;
     outline: none;
     width: 200px;
-
 }
 
 .search-bar button {
@@ -157,7 +157,7 @@ body {
     z-index: 100;
 }
 
-#load-more-btn{
+#load-more-btn {
     background: var(--accent);
     color: white;
     border: none;
@@ -181,7 +181,7 @@ body {
 .dialog-card {
     background: #1a252f;
     width: 500px;
-    height: 750px;
+    height: 800px;
     border-radius: 30px;
     overflow: hidden;
     display: flex;
@@ -217,12 +217,16 @@ body {
     align-items: center;
 }
 
-.arrow-left {
-    left: 15px;
-}
+.arrow-left { left: 15px; }
+.arrow-right { right: 15px; }
 
-.arrow-right {
-    right: 15px;
+.close-btn {
+    top: 20px;
+    right: 20px;
+    transform: none;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
 }
 
 .dialog-tabs {
@@ -250,7 +254,7 @@ body {
 .dialog-content {
     flex-grow: 1;
     padding: 30px;
-    overflow: hidden;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -315,9 +319,7 @@ body {
         justify-content: space-between;
     }
 
-    .search-bar input {
-        width: 100%;
-    }
+    .search-bar input { width: 100%; }
 
     .pokemon-grid {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -327,15 +329,13 @@ body {
 
     .dialog-card {
         width: 90vw;
-        height: 85vh;
-        max-height: 750px;
-        box-sizing: border-box;
+        height: 88vh;
+        max-height: 800px;
     }
 
     .dialog-header {
         height: auto;
-        padding: 25px 15px 15px 15px;
-        box-sizing: border-box;
+        padding: 40px 15px 20px 15px;
     }
 
     .dialog-header img {
@@ -351,92 +351,41 @@ body {
     .arrow-left { left: 5px; }
     .arrow-right { right: 5px; }
 
+    .close-btn {
+        top: 15px;
+        right: 15px;
+    }
+
     .dialog-content {
-        padding: 15px;
-        box-sizing: border-box;
-        width: 100%;
+        padding: 20px;
+        justify-content: center;
     }
 
-    .dialog-tabs button {
-        padding: 12px;
-        font-size: 16px;
-    }
-
-    .stat-row {
-        gap: 10px;
-        margin-bottom: 12px;
-    }
-
-    .stat-name {
-        width: 60px;
-        font-size: 16px;
-    }
-
-    .dialog-content > div[style*="grid-template-columns: 1fr 1fr"] {
-        gap: 10px;
-    }
-    
-    .dialog-content > div > div {
-        padding: 10px;
-    }
+    .stat-row { gap: 10px; margin-bottom: 12px; }
+    .stat-name { width: 60px; font-size: 14px; }
 }
 
 @media (max-width: 380px) {
-    .pokemon-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .dialog-header {
-        padding: 15px 10px 10px 10px;
-    }
+    .pokemon-grid { grid-template-columns: 1fr; }
 
-    .dialog-header h2 {
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
+    .dialog-card { height: 92vh; }
 
-    .dialog-header img {
-        height: 100px;
-        margin-top: 5px;
-    }
+    .dialog-header h2 { font-size: 18px; margin-bottom: 5px; }
+    .dialog-header img { height: 120px; }
 
-    .dialog-tabs button {
-        padding: 8px 5px;
-        font-size: 16px;
-    }
+    .dialog-tabs button { padding: 12px 5px; font-size: 14px; }
 
-    .stat-row {
-        margin-bottom: 6px;
-        gap: 5px;
-    }
-
-    .stat-name {
-        width: 40px;
-        font-size: 14px;
-    }
+    .stat-name { width: 45px; font-size: 12px; }
 
     .dialog-content {
-        padding: 8px;
+        padding: 15px;
+        justify-content: center;
     }
 
     .dialog-content > div[style*="grid-template-columns: 1fr 1fr"] {
-        grid-template-columns: 1fr;
-        gap: 5px;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
     }
 
-    .dialog-content > div > div {
-        padding: 6px 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        text-align: left;
-    }
-
-    .dialog-content > div > div br {
-        display: none;
-    }
-    
-    .dialog-content > div > div b {
-        font-size: 12px;
-    }
+    .dialog-content > div > div { padding: 8px; }
 }

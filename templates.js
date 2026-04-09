@@ -19,6 +19,7 @@ function createOverlay(id, name, img, mainType, typesHtml, contentArea) {
   return `
         <div class="dialog-card">
             <div class="dialog-header bg-${mainType}">
+                <button class="nav-arrow close-btn" onclick="document.getElementById('overlay').close(); document.body.classList.remove('no-scroll');">&#10006;</button>
                 <button class="nav-arrow arrow-left" onclick="goPrevious()">&#10094;</button>
                 <button class="nav-arrow arrow-right" onclick="goNext()">&#10095;</button>
                 <div style="font-weight: bold; margin-bottom: 5px; opacity: 0.8;">#${id}</div>
