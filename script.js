@@ -254,7 +254,3 @@ function checkSearchInput() {
         startSearch();
     }
 }
-
-//TODO:
-
-//Mobile Responsiveness

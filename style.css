@@ -171,7 +171,6 @@ body {
 .overlay {
     border: none;
     background: transparent;
-    padding: 0;
     outline: none;
 }
 
@@ -267,7 +266,7 @@ body {
 
 .stat-name {
     width: 100px;
-    font-size: 13px;
+    font-size: 16px;
     color: #888;
     text-transform: uppercase;
 }
@@ -302,3 +301,142 @@ body {
 .bg-dragon { background-color: #7038f8; }
 
 .no-scroll { overflow: hidden; }
+
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 5%;
+    }
+
+    .search-bar {
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: space-between;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .pokemon-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 15px;
+        padding: 20px 5% 100px 5%;
+    }
+
+    .dialog-card {
+        width: 90vw;
+        height: 85vh;
+        max-height: 750px;
+        box-sizing: border-box;
+    }
+
+    .dialog-header {
+        height: auto;
+        padding: 25px 15px 15px 15px;
+        box-sizing: border-box;
+    }
+
+    .dialog-header img {
+        height: 150px; 
+        margin-top: 10px;
+    }
+
+    .nav-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    .arrow-left { left: 5px; }
+    .arrow-right { right: 5px; }
+
+    .dialog-content {
+        padding: 15px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .dialog-tabs button {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .stat-row {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .stat-name {
+        width: 60px;
+        font-size: 16px;
+    }
+
+    .dialog-content > div[style*="grid-template-columns: 1fr 1fr"] {
+        gap: 10px;
+    }
+    
+    .dialog-content > div > div {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .pokemon-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dialog-header {
+        padding: 15px 10px 10px 10px;
+    }
+
+    .dialog-header h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .dialog-header img {
+        height: 100px;
+        margin-top: 5px;
+    }
+
+    .dialog-tabs button {
+        padding: 8px 5px;
+        font-size: 16px;
+    }
+
+    .stat-row {
+        margin-bottom: 6px;
+        gap: 5px;
+    }
+
+    .stat-name {
+        width: 40px;
+        font-size: 14px;
+    }
+
+    .dialog-content {
+        padding: 8px;
+    }
+
+    .dialog-content > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .dialog-content > div > div {
+        padding: 6px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+
+    .dialog-content > div > div br {
+        display: none;
+    }
+    
+    .dialog-content > div > div b {
+        font-size: 12px;
+    }
+}
