@@ -214,30 +214,20 @@ function closeDialog(event) {
 }
 
 function startSearch() {
-    let inputVal = document.getElementById('search').value.toLowerCase();
-    document.getElementById('pokemon-container').innerHTML = '';
-    
+    let inputVal = document.getElementById('search').value.toLowerCase().trim();
+    let container = document.getElementById('pokemon-container');
     let loadBtn = document.querySelector('.load-button');
     
+    container.innerHTML = '';
+    currentSearchIndices = [];
+
     if (inputVal.length === 0) {
-        currentSearchIndices = [];
-        if (loadBtn && currentOffset < totalGenOne) {
-            loadBtn.classList.remove('d-none');
-        }
-        renderAllPokemon();
-        return;
+        if (loadBtn && currentOffset < totalGenOne) loadBtn.classList.remove('d-none');
+        return renderAllPokemon();
     }
     
-    if (loadBtn) {
-        loadBtn.classList.add('d-none');
-    }
-    
-    if (inputVal.length < 3) {
-        currentSearchIndices = [];
-        showMinCharMessage();
-        return;
-    }
-    filterAndRenderPokemon(inputVal);
+    if (loadBtn) loadBtn.classList.add('d-none');
+    inputVal.length < 3 ? showMinCharMessage() : filterAndRenderPokemon(inputVal);
 }
 
 function renderAllPokemon() {
