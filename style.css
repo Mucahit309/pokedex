@@ -181,7 +181,7 @@ body {
 .dialog-card {
     background: #1a252f;
     width: 500px;
-    height: 800px;
+    height: 850px;
     border-radius: 30px;
     overflow: hidden;
     display: flex;
@@ -257,8 +257,13 @@ body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     box-sizing: border-box;
+    align-items: center;
+}
+
+.dialog-content > div {
+    margin: auto 0;
+    width: 100%;
 }
 
 .stat-row {
@@ -329,8 +334,8 @@ body {
 
     .dialog-card {
         width: 90vw;
-        height: 88vh;
-        max-height: 800px;
+        height: 90vh;
+        max-height: 850px;
     }
 
     .dialog-header {
@@ -358,7 +363,6 @@ body {
 
     .dialog-content {
         padding: 20px;
-        justify-content: center;
     }
 
     .stat-row { gap: 10px; margin-bottom: 12px; }
@@ -368,7 +372,7 @@ body {
 @media (max-width: 380px) {
     .pokemon-grid { grid-template-columns: 1fr; }
 
-    .dialog-card { height: 92vh; }
+    .dialog-card { height: 95vh; }
 
     .dialog-header h2 { font-size: 18px; margin-bottom: 5px; }
     .dialog-header img { height: 120px; }
@@ -379,7 +383,6 @@ body {
 
     .dialog-content {
         padding: 15px;
-        justify-content: center;
     }
 
     .dialog-content > div[style*="grid-template-columns: 1fr 1fr"] {
@@ -387,5 +390,5 @@ body {
         gap: 10px !important;
     }
 
-    .dialog-content > div > div { padding: 8px; }
+    .dialog-content > div > div { padding: 10px; }
 }
