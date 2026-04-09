@@ -67,12 +67,3 @@ function createStatBar(name, value, percent) {
         </div>
     `;
 }
-
-function showMinCharMessage() {
-    let container = document.getElementById('pokemon-container');
-    container.innerHTML = `
-        <div style="grid-column:1/-1; text-align:center; padding:50px; color: #888;">
-            <h2>Please enter at least 3 letters...</h2>
-        </div>
-    `;
-}
