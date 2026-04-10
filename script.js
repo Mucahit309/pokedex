@@ -268,7 +268,12 @@ function showSearchResults(foundItems) {
 
 function checkSearchInput() {
     let val = document.getElementById('search').value;
-    if (val.length === 0) {
+    let clearBtn = document.getElementById('clear-search-btn');
+    
+    if (val.length > 0) {
+        clearBtn.classList.remove('d-none');
+    } else {
+        clearBtn.classList.add('d-none');
         startSearch();
     }
 }
@@ -277,4 +282,10 @@ function handleSearchKey(event) {
     if (event.key === 'Enter') {
         startSearch();
     }
+}
+
+function clearSearch() {
+    document.getElementById('search').value = '';
+    document.getElementById('clear-search-btn').classList.add('d-none');
+    startSearch();
 }
