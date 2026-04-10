@@ -10,6 +10,8 @@ body {
     background-color: var(--bg-dark);
     color: white;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .loading-screen {
@@ -82,9 +84,12 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 25px;
-    padding: 40px 5% 120px 5%;
+    padding: 40px 5% 40px 5%;
     max-width: 1440px;
     margin: 0 auto;
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .pokemon-card {
@@ -146,7 +151,7 @@ body {
 }
 
 .load-button {
-    position: fixed;
+    position: sticky;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -311,6 +316,47 @@ body {
 
 .no-scroll { overflow: hidden; }
 
+.main-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: var(--card-dark);
+    border-top: 1px solid #2c3e50;
+    margin-top: auto;
+    font-size: 14px;
+    position: relative;
+    z-index: 101;
+}
+
+.main-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-footer a:hover {
+    text-decoration: underline;
+}
+
+.impressum-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--card-dark);
+    border-radius: 20px;
+    border: 1px solid #2c3e50;
+    line-height: 1.6;
+    flex-grow: 1;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.impressum-content h2, 
+.impressum-content h3 {
+    color: var(--accent);
+}
+
 @media (max-width: 600px) {
     .header-content {
         flex-direction: column;
@@ -329,7 +375,7 @@ body {
     .pokemon-grid {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 15px;
-        padding: 20px 5% 100px 5%;
+        padding: 20px 5% 40px 5%;
     }
 
     .dialog-card {
@@ -367,6 +413,14 @@ body {
 
     .stat-row { gap: 10px; margin-bottom: 12px; }
     .stat-name { width: 60px; font-size: 14px; }
+    
+    .main-footer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+        text-align: center;
+        padding: 20px 5%;
+    }
 }
 
 @media (max-width: 380px) {

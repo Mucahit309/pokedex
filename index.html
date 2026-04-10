@@ -10,7 +10,7 @@
   <body onload="init()">
     <header>
       <div class="header-content">
-        <div class="logo">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
           <img src="./img/pokeball.png" alt="Logo" />
           <h1>Pokédex</h1>
         </div>
@@ -26,6 +26,12 @@
     <div class="load-button">
       <button id="load-more-btn" onclick="loadMore()">Load More Pokémon</button>
     </div>
+
+    <footer class="main-footer">
+      <div>©Pokedex 2026</div>
+      <div><a href="imprint.html">Imprint</a></div>
+      <div style="cursor: pointer;">Cookie Preferences</div>
+    </footer>
 
     <dialog id="overlay" class="overlay" onclick="closeDialog(event)">
       <div id="overlay-content"></div>
